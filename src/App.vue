@@ -1,13 +1,25 @@
 <template lang="pug">
     div#app
-        router-view
+        pageHeader
+
+        div.page-wrapper
+            transition(name="transform" mode="out-in" appear)
+                router-view
+
+        notice
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase';
+import pageHeader from './components/Header';
+import notice from './components/Notice';
 
 export default {
     name: 'app',
+    components: {
+        pageHeader,
+        notice,
+    },
     data() {
         return {
             loaded: false,
@@ -16,6 +28,80 @@ export default {
 }
 </script>
 
+<style src="normalize.css/normalize.css"></style>
 <style lang="scss">
+    @import './style/style';
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+        letter-spacing: 0.5px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 18px;
+        color: #333;
+    }
+    .page-wrapper {
+        padding: 30px 15px;
+    }
+    .transform-enter {
+        opacity: 0;
+        transform: translateY(30px)
+    }
 
+    .transform-enter-active {
+        transition: 0.25s;
+    }
+
+    .transform-leave {
+
+    }
+
+    .transform-leave-active {
+        transition: 0.25s;
+        opacity: 0;
+    }
+    button {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        outline: 0;
+    }
+    a {
+        color: #2196F3;
+    }
+    ul,
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+        padding: 0;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: 300;
+    }
+    .page {
+        padding: 30px 15px;
+    }
+    h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    p {
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+    b,
+    strong {
+        font-weight: 600;
+    }
 </style>

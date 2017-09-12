@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import {store} from './store';
 import firebase from 'firebase'
 
 Vue.config.productionTip = false
-
-require('normalize.css');
 
 let config = {
     apiKey: "AIzaSyDhLfMC5caoWyEvZNrVKk15lsrwOILvP80",
@@ -24,6 +23,7 @@ firebase.auth().onAuthStateChanged((user) => {
         app = new Vue({
             el: '#app',
             router,
+            store,
             render: h => h(App)
         })
     }
