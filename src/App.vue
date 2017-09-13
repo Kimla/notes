@@ -24,6 +24,16 @@ export default {
         return {
             loaded: false,
         }
+    },
+    created() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if ( user ) {
+                const notesRef = firebase.database().ref('users/' + user.uid + '/notes');
+                notesRef.on('value', (snap) => this.$store.commit('setNotes', snap.val()));
+                this.$store.commit('setUser', user);
+                this.$store.commit('setNotesRef', notesRef);
+            }
+        });
     }
 }
 </script>
@@ -33,6 +43,10 @@ export default {
     @import './style/style';
     * {
         box-sizing: border-box;
+    }
+    html,
+    body {
+        height: 100%;
     }
     body {
         font-family: -apple-system, BlinkMacSystemFont,
@@ -44,6 +58,7 @@ export default {
         -moz-osx-font-smoothing: grayscale;
         font-size: 18px;
         color: #333;
+        background-color: #f5f5f5;
     }
     .page-wrapper {
         padding: 30px 15px;

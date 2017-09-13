@@ -13,7 +13,7 @@ export default {
     props: ['button'],
     methods: {
         clicked() {
-            this.$emit('Clicked');
+            this.$emit('clicked');
         }
     }
 }

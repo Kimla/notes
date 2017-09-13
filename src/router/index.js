@@ -4,10 +4,11 @@ import firebase from 'firebase';
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Note from '@/components/Note'
 
 Vue.use(Router)
 
-const router = new Router({
+export const router = new Router({
     mode: 'history',
     routes: [
         {
@@ -27,6 +28,11 @@ const router = new Router({
             path: '/register',
             name: 'register',
             component: Register
+        },
+        {
+            path: '/note/:id',
+            name: 'note',
+            component: Note
         }
     ]
 })
@@ -38,5 +44,3 @@ router.beforeEach((to, from, next) => {
     if (requiresAuth && !currentUser) next('login');
     else next();
 })
-
-export default router;

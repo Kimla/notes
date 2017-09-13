@@ -15,7 +15,7 @@
                 router-link.form-link( to="/register" ) Don't have an account?
 
             div.button-holder
-                buttonEl( :button="{ label: 'Login' }" @Clicked="login()" )
+                buttonEl( :button="{ label: 'Login' }" @clicked="login()" )
 </template>
 
 <script>
