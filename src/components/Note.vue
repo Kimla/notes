@@ -67,8 +67,21 @@ export default {
             };
 
             this.$store.dispatch('showNotice', notice);
+        },
+        handleKeyDown(e) {
+            const self = this;
+            if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey))      {
+                e.preventDefault();
+                self.save();
+            }
         }
-    }
+    },
+    created() {
+        document.addEventListener("keydown", this.handleKeyDown);
+    },
+    beforeDestroy() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    },
 }
 </script>
 
