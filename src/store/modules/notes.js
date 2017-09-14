@@ -23,6 +23,11 @@ export const mutations = {
         });
         router.push('/note/' + newPostRef.key);
     },
+    removeNote: (state, payload) => {
+        var user = firebase.auth().currentUser;
+        let noteRef = firebase.database().ref('users/' + user.uid + '/notes/' + payload);
+        noteRef.remove();
+    },
     updateNote: (state, payload) => {
         var user = firebase.auth().currentUser;
         let noteRef = firebase.database().ref('users/' + user.uid + '/notes/' + payload.id);

@@ -7,7 +7,8 @@
             textarea( placeholder="Content" ref="content" :value="note.content" )
 
         div
-            buttonEl( @clicked="save()" :button="{ label: 'Back', link: '/' }" )
+            buttonEl( :button="{ label: 'Back', link: '/' }" )
+            buttonEl( @clicked="remove()" :button="{ label: 'Remove' }" )
             buttonEl( @clicked="save()" :button="{ label: 'Save' }" )
 </template>
 
@@ -38,6 +39,18 @@ export default {
         }
     },
     methods: {
+        remove() {
+            this.$store.commit('removeNote', this.$route.params.id);
+
+            let notice = {
+                message: 'Your note is now removed!',
+                status: 'is-success',
+            };
+
+            this.$router.replace('/');
+
+            this.$store.dispatch('showNotice', notice);
+        },
         save() {
             const data = {
                 id: this.$route.params.id,
