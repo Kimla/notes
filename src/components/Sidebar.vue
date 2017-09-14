@@ -1,7 +1,7 @@
 <template lang="pug">
     aside.sidebar
         div.notes
-            router-link.note( :to="`/note/${key}`" v-for="(note, key) in notes" :key="key" )
+            router-link.note( :to="`/note/${note.key}`" v-for="(note, key) in notes" :key="note.key" )
                 h2( v-if="note.title" ) {{ note.title }}
                 h2( v-else ) (Unamed)
 
@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         notes() {
-            return this.$store.getters.notes;
+            return this.$store.getters.notes.reverse();
         }
     },
     methods: {

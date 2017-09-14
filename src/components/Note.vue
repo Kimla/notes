@@ -31,11 +31,17 @@ export default {
             const notes = this.$store.getters.notes;
             const id = this.$route.params.id;
 
-            if ( !notes || notes.length < 1 || !notes[id] ) {
+            if ( !notes || notes.length < 1 ) {
                 return false;
             }
 
-            return notes[id];
+            for (var i = 0; i < notes.length; i++) {
+                if ( notes[i].key === id ) {
+                    return notes[i];
+                }
+            }
+
+            return false;
         }
     },
     methods: {
@@ -57,6 +63,7 @@ export default {
                 note: {
                     title: this.$refs.title.value,
                     content: this.$refs.content.value,
+                    updated_at: Date.now(),
                 }
             };
             this.$store.commit('updateNote', data);

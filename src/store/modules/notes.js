@@ -18,8 +18,10 @@ export const mutations = {
     },
     createNote: (state, payload) => {
         var newPostRef = state.notesRef.push({
-            'title': '',
-            'content': ''
+            title: '',
+            content: '',
+            updated_at: Date.now(),
+            created_at: Date.now(),
         });
         router.push('/note/' + newPostRef.key);
     },
@@ -34,6 +36,8 @@ export const mutations = {
         noteRef.update(payload.note);
     },
     setNotes: (state, payload) => {
+        let notes = [];
+
         state.notes = payload;
     }
 };

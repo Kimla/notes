@@ -30,10 +30,21 @@ export default {
         }
     },
     created() {
+        const self = this;
         firebase.auth().onAuthStateChanged((user) => {
             if ( user ) {
                 const notesRef = firebase.database().ref('users/' + user.uid + '/notes');
-                notesRef.on('value', (snap) => this.$store.commit('setNotes', snap.val()));
+                notesRef.orderByChild('updated_at').on("value", function (snapshot) {
+                    let notes = [];
+                     snapshot.forEach(function(child) {
+                         let note = child.val();
+                         note.key = child.key;
+                         notes.push(note);
+                     });
+
+                     self.$store.commit('setNotes', notes);
+                });
+
                 this.$store.commit('setUser', user);
                 this.$store.commit('setNotesRef', notesRef);
             }
