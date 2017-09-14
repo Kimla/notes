@@ -3,9 +3,11 @@
         pageHeader
 
         div.page-wrapper
-            transition(name="transform" mode="out-in" appear)
-                router-view
+            div.page-wrapper__inner
+                transition(name="transform" mode="out-in" appear)
+                    router-view
 
+        sidebar
         notice
 </template>
 
@@ -13,11 +15,13 @@
 import firebase from 'firebase';
 import pageHeader from './components/Header';
 import notice from './components/Notice';
+import sidebar from './components/Sidebar';
 
 export default {
     name: 'app',
     components: {
         pageHeader,
+        sidebar,
         notice,
     },
     data() {
@@ -61,7 +65,13 @@ export default {
         background-color: #f5f5f5;
     }
     .page-wrapper {
-        padding: 30px 15px;
+        margin-left: 300px;
+        width: calc(100% - 300px);
+        &__inner {
+            width: 1200px;
+            padding: 30px;
+            max-width: 100%;
+        }
     }
     .transform-enter {
         opacity: 0;

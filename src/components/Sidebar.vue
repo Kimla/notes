@@ -1,23 +1,19 @@
 <template lang="pug">
-    div.home
-        div.inner
-            h1 Your notes!
-
-            div.notes
-                router-link.note( :to="`/note/${key}`" v-for="(note, key) in notes" :key="key" )
-                    h2( v-if="note.title" ) {{ note.title }}
-                    h2( v-else ) (Unamed)
+    aside.sidebar
+        div.notes
+            router-link.note( :to="`/note/${key}`" v-for="(note, key) in notes" :key="key" )
+                h2( v-if="note.title" ) {{ note.title }}
+                h2( v-else ) (Unamed)
 
         buttonEl( :button="{ label: 'Create note' }" @clicked="createNote()" )
         buttonEl( :button="{ label: 'Logout' }" @clicked="logout()" )
 </template>
-
 <script>
 import firebase from 'firebase';
 import buttonEl from '@/components/Button.vue'
 
 export default {
-    name: 'home',
+    name: 'sidebar',
     components: {
         buttonEl,
     },
@@ -46,12 +42,15 @@ export default {
 </script>
 
 <style lang="scss">
-.inner {
+.sidebar {
+    position: fixed;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.10), 1px 2px 10px rgba(0, 0, 0, 0.08);
-    padding: 30px 15px;
-    margin-bottom: 30px;
+    width: 300px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 30px;
+    top: 53px;
 }
 .notes {
     .note {
