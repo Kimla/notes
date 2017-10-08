@@ -33,6 +33,7 @@ export default {
                     status: 'is-success',
                 };
 
+                this.$store.commit('resetNotes');
                 this.$store.dispatch('showNotice', notice);
                 this.$router.replace('/login');
             });

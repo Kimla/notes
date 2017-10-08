@@ -37,9 +37,11 @@ export const mutations = {
         noteRef.update(payload.note);
     },
     setNotes: (state, payload) => {
-        let notes = [];
-
         state.notes = payload;
+    },
+    resetNotes: (state) => {
+        state.notesRef = false;
+        state.notes = [];
     }
 };
 
