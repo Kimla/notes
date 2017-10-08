@@ -1,7 +1,7 @@
 <template lang="pug">
     aside.sidebar
         div.notes
-            router-link.note( :to="`/note/${note.key}`" v-for="(note, key) in notes" :key="note.key" )
+            router-link.note( :to="`/note/${note.key}/${note.slug}`" v-for="(note, key) in notes" :key="note.key" )
                 h2( v-if="note.title" ) {{ note.title }}
                 h2( v-else ) (Unamed)
 

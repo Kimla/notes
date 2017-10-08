@@ -15,9 +15,6 @@ export const router = new Router({
             path: '/',
             name: 'home',
             component: Home,
-            meta: {
-                requiresAuth: true
-            }
         },
         {
             path: '/login',
@@ -30,7 +27,7 @@ export const router = new Router({
             component: Register
         },
         {
-            path: '/note/:id',
+            path: '/note/:id/:slug',
             name: 'note',
             component: Note
         }

@@ -20,6 +20,7 @@ export const mutations = {
         var newPostRef = state.notesRef.push({
             title: '',
             content: '',
+            slug: 'unnamed',
             updated_at: Date.now(),
             created_at: Date.now(),
         });

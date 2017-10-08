@@ -62,6 +62,7 @@ export default {
                 id: this.$route.params.id,
                 note: {
                     title: this.$refs.title.value,
+                    slug: slugify(this.$refs.title.value),
                     content: this.$refs.content.value,
                     updated_at: Date.now(),
                 }
@@ -89,6 +90,16 @@ export default {
     beforeDestroy() {
         document.removeEventListener('keydown', this.handleKeyDown);
     },
+}
+
+function slugify(text)
+{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
 }
 </script>
 
