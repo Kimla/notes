@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         notes() {
-            return this.$store.getters.notes.reverse();
+            return this.$store.getters.notes;
         }
     },
     methods: {
@@ -34,7 +34,7 @@ export default {
                 };
 
                 this.$store.dispatch('showNotice', notice);
-                this.$router.replace('login');
+                this.$router.replace('/login');
             });
         }
     }

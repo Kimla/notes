@@ -42,7 +42,14 @@ export default {
                          notes.push(note);
                      });
 
-                     self.$store.commit('setNotes', notes);
+                     self.$store.commit('setNotes', notes.reverse());
+
+                     if ( notes.length > 0 && self.$route.name === 'home' ) {
+                         const firstNote = notes[0];
+                         self.$router.replace(`/note/${firstNote.key}/${firstNote.slug}`);
+                     }
+
+                     self.loaded = true;
                 });
 
                 this.$store.commit('setUser', user);
