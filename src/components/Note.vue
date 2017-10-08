@@ -76,6 +76,7 @@ export default {
             };
 
             this.$store.dispatch('showNotice', notice);
+            this.$router.replace(`/note/${data.id}/${data.note.slug}`);
         },
         handleKeyDown(e) {
             const self = this;

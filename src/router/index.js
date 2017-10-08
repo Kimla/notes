@@ -28,7 +28,12 @@ export const router = new Router({
         },
         {
             path: '/note/:id/:slug',
-            name: 'note',
+            name: 'noteWithSlug',
+            component: Note
+        },
+        {
+            path: '/note/:id/',
+            name: 'noteWithoutSlug',
             component: Note
         }
     ]
