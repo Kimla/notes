@@ -10,7 +10,7 @@
 </template>
 <script>
 import firebase from 'firebase';
-import buttonEl from '@/components/Button.vue'
+import buttonEl from '@/components/Button.vue';
 
 export default {
     name: 'sidebar',
