@@ -1,13 +1,12 @@
 <template lang="pug">
     div.note( v-if="note" )
-        div
+        div.note__header
             input( type="text" :value="note.title" placeholder="Title" ref="title" )
 
-        div
+        div.note__content
             textarea( placeholder="Content" ref="content" :value="note.content" )
 
-        div
-            buttonEl( :button="{ label: 'Back', link: '/' }" )
+        div.note__buttons
             buttonEl( @clicked="remove()" :button="{ label: 'Remove' }" )
             buttonEl( @clicked="save()" :button="{ label: 'Save' }" )
 </template>
@@ -96,20 +95,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    input,
-    textarea {
-        border: 0;
-        padding: 15px;
-        width: 100%;
-        margin-bottom: 30px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.10), 1px 2px 10px rgba(0, 0, 0, 0.08);
-        outline: 0;
+.note {
+    height: 100%;
+    &__header {
+        border-bottom: 1px solid #ddd;
     }
+    &__content {
+        height: calc(100% - 56px);
+    }
+    &__buttons {
+        display: none;
+    }
+}
 
-    textarea {
-        resize: none;
-        height: 240px;
-    }
+input,
+textarea {
+    border: 0;
+    padding: 15px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0;
+    outline: 0;
+}
+
+textarea {
+    resize: none;
+    height: 100%;
+}
 </style>

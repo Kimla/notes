@@ -3,9 +3,8 @@
         pageHeader
 
         div.page-wrapper
-            div.page-wrapper__inner
-                transition(name="transform" mode="out-in" appear)
-                    router-view
+            transition(name="transform" mode="out-in" appear)
+                router-view
 
         sidebar
         notice
@@ -80,20 +79,19 @@ export default {
         -moz-osx-font-smoothing: grayscale;
         font-size: 18px;
         color: #333;
-        background-color: #f5f5f5;
+    }
+    #app {
+        height: 100%;
     }
     .page-wrapper {
-        margin-left: 300px;
-        width: calc(100% - 300px);
-        &__inner {
-            width: 1200px;
-            padding: 30px;
-            max-width: 100%;
+        height: calc(100% - 53px);
+        @media (min-width: 760px) {
+            margin-left: 300px;
+            width: calc(100% - 300px);
         }
     }
     .transform-enter {
         opacity: 0;
-        transform: translateY(30px)
     }
 
     .transform-enter-active {

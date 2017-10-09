@@ -10,7 +10,7 @@ export default {
 <style lang="scss">
 .page-header {
     padding: 15px;
-    background-color: #009688;
+    background-color: #00BCD4;
     text-align: center;
     color: #fff;
     font-weight: 300;

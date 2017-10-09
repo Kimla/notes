@@ -52,6 +52,11 @@ export default {
     height: 100%;
     padding: 30px;
     top: 53px;
+    border-right: 1px solid #ddd;
+    display: none;
+    @media (min-width: 760px) {
+        display: block;
+    }
 }
 .notes {
     .note {
