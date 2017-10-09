@@ -1,9 +1,9 @@
 <template lang="pug">
     aside.sidebar
-        div.notes
-            router-link.note( :to="`/note/${note.key}/${note.slug}`" v-for="(note, key) in notes" :key="note.key" )
-                h2( v-if="note.title" ) {{ note.title }}
-                h2( v-else ) (Unnamed)
+        div.sidebar__notes
+            router-link.sidebar__note( :to="`/note/${note.key}/${note.slug}`" v-for="(note, key) in notes" :key="note.key" )
+                span( v-if="note.title" ) {{ note.title }}
+                span( v-else ) (Unnamed)
 
         buttonEl( :button="{ label: 'Create note' }" @clicked="createNote()" )
         buttonEl( :button="{ label: 'Logout' }" @clicked="logout()" )
@@ -49,20 +49,23 @@ export default {
     width: 300px;
     top: 0;
     left: 0;
-    height: 100%;
-    padding: 30px;
+    height: calc(100% - 53px);
     top: 53px;
     border-right: 1px solid #ddd;
     display: none;
     @media (min-width: 760px) {
         display: block;
     }
-}
-.notes {
-    .note {
-        margin-bottom: 6px;
-        line-height: 1.5;
-        font-size: 16px;
+    &__notes {
+        margin-bottom: 20px;
+    }
+    &__note {
+        color: #333;
+        text-decoration: none;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 18px;
     }
 }
 </style>
