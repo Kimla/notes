@@ -1,7 +1,7 @@
 <template lang="pug">
     aside.sidebar
         div.sidebar__notes
-            router-link.sidebar__note( :to="`/note/${note.key}/${note.slug}`" v-for="(note, key) in notes" :key="note.key" )
+            router-link.sidebar__note( :to="`/note/${note.key}/${note.slug}`" v-for="(note, key) in notes" :class="activeKey === note.key ? 'is-active' : ''" :key="note.key" )
                 span( v-if="note.title" ) {{ note.title }}
                 span( v-else ) (Unnamed)
 
@@ -18,6 +18,9 @@ export default {
         buttonEl,
     },
     computed: {
+        activeKey() {
+            return this.$route.params.id;
+        },
         notes() {
             return this.$store.getters.notes;
         }
@@ -66,6 +69,12 @@ export default {
         border-bottom: 1px solid #ddd;
         display: block;
         font-size: 18px;
+        background-color: #fff;
+        transition: 0.25s;
+        &.is-active,
+        &:hover {
+            background-color: #EEF3F8;
+        }
     }
 }
 </style>
