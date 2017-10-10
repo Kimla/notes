@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 import firebase from 'firebase';
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
-import Note from '@/components/Note'
+import Home from '@/components/Home';
+import Login from '@/components/Login';
+import Register from '@/components/Register';
+import Note from '@/components/Note';
 
 Vue.use(Router)
 
