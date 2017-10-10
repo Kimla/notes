@@ -5,17 +5,28 @@
                 span( v-if="note.title" ) {{ note.title }}
                 span( v-else ) (Unnamed)
 
-        buttonEl( :button="{ label: 'Create note' }" @clicked="createNote()" )
-        buttonEl( :button="{ label: 'Logout' }" @clicked="logout()" )
+        button.sidebarButton( @click="createNote()" )
+            div.sidebarButton__inner
+                img.sidebarButton__icon( :src="noteIcon" )
+                span.sidebarButton__label Create new note
+
+        button.sidebarButton(  @click="logout()" )
+            div.sidebarButton__inner
+                img.sidebarButton__icon( :src="logoutIcon" )
+                span.sidebarButton__label Logout
 </template>
 <script>
 import firebase from 'firebase';
-import buttonEl from '@/components/Button.vue';
+import noteIcon from '@/assets/note.svg';
+import logoutIcon from '@/assets/logout.svg';
 
 export default {
     name: 'sidebar',
-    components: {
-        buttonEl,
+    data() {
+        return {
+            noteIcon,
+            logoutIcon
+        }
     },
     computed: {
         activeKey() {
@@ -46,6 +57,28 @@ export default {
 </script>
 
 <style lang="scss">
+.sidebarButton {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #2196F3;
+    color: #fff;
+    margin-bottom: 4px;
+    cursor: pointer;
+    &__inner {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+    }
+    &__icon {
+        width: 20px;
+        height: auto;
+    }
+    &__label {
+        margin-left: 10px;
+    }
+}
 .sidebar {
     position: fixed;
     background-color: #fff;
