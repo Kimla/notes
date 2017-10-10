@@ -2,26 +2,29 @@
     div.note( v-if="note" )
         div.note__header
             input( type="text" :value="note.title" placeholder="Title" ref="title" )
+            div.note__buttons
+                buttonIcon( @clicked="remove()" :icon="removeIcon" )
+                buttonIcon( @clicked="save()" :icon="saveIcon" )
 
         div.note__content
             textarea( placeholder="Content" ref="content" :value="note.content" )
-
-        div.note__buttons
-            buttonEl( @clicked="remove()" :button="{ label: 'Remove' }" )
-            buttonEl( @clicked="save()" :button="{ label: 'Save' }" )
 </template>
 
 <script>
 import {slugify} from '@/helpers/helpers';
-import buttonEl from '@/components/Button.vue';
+import buttonIcon from '@/components/buttonIcon.vue';
+import removeIcon from '@/assets/remove_icon.svg';
+import saveIcon from '@/assets/save_icon.svg';
 
 export default {
     name: 'note',
     components: {
-        buttonEl,
+        buttonIcon
     },
     data() {
         return {
+            removeIcon,
+            saveIcon,
             title: '',
             content: '',
         }
@@ -99,12 +102,18 @@ export default {
     height: 100%;
     &__header {
         border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
     }
     &__content {
         height: calc(100% - 56px);
     }
     &__buttons {
-        display: none;
+        display: flex;
+        padding: 0 15px;
+    }
+    .buttonIcon {
+        margin-left: 10px;
     }
 }
 
